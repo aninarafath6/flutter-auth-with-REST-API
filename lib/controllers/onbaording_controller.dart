@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:karmalab_assignment/models/onboarding_model.dart';
 
-class OnboardingController {
+class OnboardingController extends GetxController {
+  final _selectedIndex = 0.obs;
+
   final List<OnboardingModel> _onboardingList = [
     OnboardingModel(
       title: "Learn from Experts and Professionals",
@@ -14,17 +17,22 @@ class OnboardingController {
       title: "One to one doubt clearing sessions!",
       description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. ",
-      imageURL: "assets/images/png/onboarding-images/onboarding-2.png",
+      imageURL: "assets/images/png/onboarding-images/onboarding-1.png",
       bgColor: const Color(0xffFFDDDD),
     ),
     OnboardingModel(
       title: "Explore your new skills everyday!",
       description:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.",
-      imageURL: "assets/images/png/onboarding-images/onboarding-1.png",
+      imageURL: "assets/images/png/onboarding-images/onboarding-2.png",
       bgColor: const Color(0xffE6FFD6),
     ),
   ];
 
   List<OnboardingModel> get onboardingList => _onboardingList;
+  int get selectedIndex => _selectedIndex.value;
+
+  void onPageChanged(int index) {
+    _selectedIndex.value = index;
+  }
 }
