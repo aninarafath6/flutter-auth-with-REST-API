@@ -5,6 +5,7 @@ import 'package:karmalab_assignment/models/onboarding_model.dart';
 class OnboardingController extends GetxController {
   final _selectedIndex = 0.obs;
   late AnimationController _animationController;
+  final PageController _pageController = PageController();
 
   final List<OnboardingModel> _onboardingList = [
     OnboardingModel(
@@ -34,24 +35,28 @@ class OnboardingController extends GetxController {
   List<OnboardingModel> get onboardingList => _onboardingList;
   int get selectedIndex => _selectedIndex.value;
   AnimationController get animationController => _animationController;
-
+  PageController get pageController => _pageController;
   //setters
   set setAnimationController(AnimationController controller) =>
       _animationController = controller;
 
   void onPageChanged(int index) {
     _selectedIndex.value = index;
-    if (index == 2) {
-      print(index);
-      if (_animationController.isCompleted) {
-        print("repete ");
-        _animationController.reset();
-        // _animationController.forward();
-        // _animationController.reverse();
-      }
-      _animationController.reset();
+    if (index == onboardingList.length - 1) {
+      // if (_animationController.isCompleted) {
 
+      //   _animationController.reset();
+      //   // _animationController.forward();
+      //   // _animationController.reverse();
+      // }
+      _animationController.reset();
       _animationController.forward();
     }
+  }
+
+  void next() {
+    _pageController.animateToPage(_selectedIndex.value + 1,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOutQuint);
   }
 }

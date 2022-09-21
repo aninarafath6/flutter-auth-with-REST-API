@@ -34,6 +34,8 @@ class OnboardingView extends StatelessWidget {
                 Expanded(
                   flex: 4,
                   child: PageView.builder(
+                    physics: BouncingScrollPhysics(),
+                    controller: _onboardingController.pageController,
                     itemBuilder: (context, index) {
                       var item = _onboardingController.onboardingList[index];
                       return Column(

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
 import 'package:karmalab_assignment/controllers/onbaording_controller.dart';
+import 'package:karmalab_assignment/widgets/custom_animated_button.dart';
 
 class OnboardingAction extends StatelessWidget {
   const OnboardingAction({
@@ -45,87 +46,21 @@ class OnboardingAction extends StatelessWidget {
               ),
             ),
           ),
-          AnimatedButton(selectedIndex: selectedIndex, color: color)
+          AnimatedButton(
+            selectedIndex: selectedIndex,
+            color: color,
+            length: _onboardingController.onboardingList.length,
+            onTap: () {
+              if (_onboardingController.selectedIndex ==
+                  _onboardingController.onboardingList.length - 1) {
+                // go to auth selection page
+              } else {
+                _onboardingController.next();
+              }
+            },
+          )
         ],
       ),
-    );
-  }
-}
-
-class AnimatedButton extends StatefulWidget {
-  const AnimatedButton({
-    Key? key,
-    required this.selectedIndex,
-    required this.color,
-  }) : super(key: key);
-
-  final int selectedIndex;
-  final Color? color;
-
-  @override
-  State<AnimatedButton> createState() => _AnimatedButtonState();
-}
-
-class _AnimatedButtonState extends State<AnimatedButton>
-    with SingleTickerProviderStateMixin {
-  // late AnimationController _animationController;
-  final OnboardingController _onboardingController =
-      Get.put(OnboardingController());
-  late Animation<double> animation;
-  @override
-  void initState() {
-    _onboardingController.setAnimationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 300),
-    )..addListener(() {
-        setState(() {});
-      });
-
-    animation = CurvedAnimation(
-        parent: _onboardingController.animationController,
-        curve: Curves.easeInOut);
-
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedContainer(
-      curve: Curves.easeInCubic,
-      duration: const Duration(milliseconds: 200),
-      width: widget.selectedIndex == 2 ? 160 : 60,
-      height: 60,
-      decoration: BoxDecoration(
-        color: AppColors.dark,
-        borderRadius:
-            BorderRadius.circular(widget.selectedIndex == 2 ? 15 : 30),
-      ),
-      child: widget.selectedIndex == 2
-          ? Opacity(
-              opacity: animation.value,
-              child: Center(
-                child: SizeTransition(
-                  axisAlignment: 5,
-                  axis: Axis.horizontal,
-                  sizeFactor: animation,
-                  child: Center(
-                    child: Text(
-                      "Get Started",
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleSmall!
-                          .copyWith(color: widget.color),
-                    ),
-                  ),
-                ),
-              ),
-            )
-          : Icon(
-              Icons.arrow_forward_rounded,
-              size: 35,
-              color: widget.color,
-            ),
     );
   }
 }
