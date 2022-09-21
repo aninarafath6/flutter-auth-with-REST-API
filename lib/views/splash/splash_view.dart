@@ -17,7 +17,10 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView>
     with SingleTickerProviderStateMixin {
+  // animation controller
   late AnimationController _controller;
+
+  // animations
   late Animation<double> topAnimation;
   late Animation<double> bottomAnimation;
 
@@ -32,6 +35,9 @@ class _SplashViewState extends State<SplashView>
       });
     bottomAnimation = Tween<double>(begin: 300, end: 140).animate(_controller)
       ..addListener(() {
+        if (_controller.isCompleted) {
+          Navigator.pushNamed(context, "/onbaording");
+        }
         setState(() {});
       });
     _controller.forward();
@@ -50,10 +56,8 @@ class _SplashViewState extends State<SplashView>
           ),
           OverlayBg(
             bg: AppColors.lightOrange,
-            // right: 0,
+            // moving circles with tween animation values
             right: -2 * topAnimation.value,
-            // right: 30,
-            // top: 20,
           ),
           OverlayBg(
             bg: AppColors.lightGreen,
@@ -62,6 +66,7 @@ class _SplashViewState extends State<SplashView>
           ),
           OverlayBg(
             bg: AppColors.lightBlue,
+            // moving circles with tween animation values
             left: 28 - bottomAnimation.value,
             bottom: -100,
           ),
