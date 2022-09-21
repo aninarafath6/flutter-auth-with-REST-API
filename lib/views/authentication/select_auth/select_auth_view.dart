@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
 import 'package:karmalab_assignment/constants/image_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
 import 'package:karmalab_assignment/utils/dimension.dart';
+import 'package:karmalab_assignment/views/authentication/login/login_view.dart';
+import 'package:karmalab_assignment/views/authentication/siginup/signup_view.dart';
 import 'package:karmalab_assignment/widgets/custom_button.dart';
 
 class SelectAuthView extends StatelessWidget {
@@ -62,11 +63,16 @@ class SelectAuthView extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 50),
-                          const CustomButton(label: "Sign In"),
+                          CustomButton(
+                              label: "Log In",
+                              onTap: () => Navigator.pushNamed(
+                                  context, LoginView.routeName)),
                           const SizedBox(height: 15),
-                          const CustomButton(
+                          CustomButton(
                             isFilled: false,
                             label: "Sign Up",
+                            onTap: () => Navigator.pushNamed(
+                                context, SignUpView.routeName),
                           )
                         ],
                       ),
