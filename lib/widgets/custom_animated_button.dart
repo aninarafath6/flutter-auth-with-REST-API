@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
-import 'package:karmalab_assignment/controllers/onbaording_controller.dart';
+import 'package:karmalab_assignment/controllers/onboarding_controller.dart';
 
 class AnimatedButton extends StatefulWidget {
   const AnimatedButton({

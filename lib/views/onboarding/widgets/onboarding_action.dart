@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
-import 'package:karmalab_assignment/controllers/onbaording_controller.dart';
+import 'package:karmalab_assignment/controllers/onboarding_controller.dart';
+import 'package:karmalab_assignment/views/authentication/select_auth/select_auth_view.dart';
 import 'package:karmalab_assignment/widgets/custom_animated_button.dart';
 
 class OnboardingAction extends StatelessWidget {
@@ -54,7 +55,7 @@ class OnboardingAction extends StatelessWidget {
             onTap: () {
               if (_onboardingController.selectedIndex ==
                   _onboardingController.onboardingList.length - 1) {
-                // go to auth selection page;
+                Navigator.pushNamed(context, SelectAuthView.routeName);
               } else {
                 _onboardingController.next();
               }

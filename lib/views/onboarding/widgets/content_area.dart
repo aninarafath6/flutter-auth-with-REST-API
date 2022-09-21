@@ -4,7 +4,7 @@ import 'package:karmalab_assignment/models/onboarding_model.dart';
 
 Padding contentArea(OnboardingModel item, BuildContext context) {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: AppSizes.defualtPadding),
+    padding: const EdgeInsets.symmetric(horizontal: AppSizes.defaultPadding),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

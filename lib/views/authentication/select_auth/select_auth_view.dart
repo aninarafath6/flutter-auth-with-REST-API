@@ -1,0 +1,108 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:karmalab_assignment/constants/color_constants.dart';
+import 'package:karmalab_assignment/constants/image_constants.dart';
+import 'package:karmalab_assignment/constants/size_constants.dart';
+import 'package:karmalab_assignment/utils/dimension.dart';
+import 'package:karmalab_assignment/widgets/custom_button.dart';
+
+class SelectAuthView extends StatelessWidget {
+  const SelectAuthView({Key? key}) : super(key: key);
+  static const routeName = "/selectAuth";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.orange,
+      body: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          _banner(context),
+          Positioned(
+            bottom: 0,
+            right: -80,
+            left: -90,
+            child: Container(
+              height: context.getHeight(50),
+              width: 500,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(300),
+                  topLeft: Radius.circular(300),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: AppSizes.defaultPadding + 60,
+                  right: AppSizes.defaultPadding + 60,
+                  top: AppSizes.defaultPadding + 40,
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      "Take A Step\nTowards Better Teaching",
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(fontSize: 28),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 15),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                            style: Theme.of(context)
+                                .textTheme
+                                .displayLarge!
+                                .copyWith(fontSize: 18),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 50),
+                          const CustomButton(label: "Sign In"),
+                          const SizedBox(height: 15),
+                          const CustomButton(
+                            isFilled: false,
+                            label: "Sign Up",
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Column _banner(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset(
+          AppImages.logLgBW,
+          width: AppSizes.logoSize,
+        ),
+        const SizedBox(
+          height: 50,
+        ),
+        Container(
+          margin: EdgeInsets.only(bottom: context.getHeight(36)),
+          child: Align(
+            alignment: Alignment.center,
+            child: Image.asset(
+              AppImages.authSelection,
+              width: AppSizes.onboardingImageSize,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

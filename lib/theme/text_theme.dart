@@ -26,4 +26,12 @@ class CustomTextTheme {
       color: AppColors.texty,
     );
   }
+
+  static TextStyle displayLarge() {
+    return GoogleFonts.openSans(
+      fontWeight: FontWeight.w400,
+      fontSize: 20,
+      color: AppColors.texty,
+    );
+  }
 }
