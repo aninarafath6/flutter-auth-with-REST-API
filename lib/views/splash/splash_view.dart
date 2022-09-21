@@ -26,8 +26,10 @@ class _SplashViewState extends State<SplashView>
 
   @override
   void initState() {
-    _controller =
-        AnimationController(duration: const Duration(seconds: 3), vsync: this);
+    _controller = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    );
 
     topAnimation = Tween<double>(begin: 80, end: 30).animate(_controller)
       ..addListener(() {
@@ -36,7 +38,7 @@ class _SplashViewState extends State<SplashView>
     bottomAnimation = Tween<double>(begin: 300, end: 140).animate(_controller)
       ..addListener(() {
         if (_controller.isCompleted) {
-          Navigator.pushNamed(context, "/onbaording");
+          Navigator.pushReplacementNamed(context, "/onboarding");
         }
         setState(() {});
       });
