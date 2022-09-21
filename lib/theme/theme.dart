@@ -10,6 +10,8 @@ class AppTheme {
       textTheme: TextTheme(
         displaySmall: GoogleFonts.openSans(),
         titleSmall: CustomTextTheme.titleSmall(),
+        titleLarge: CustomTextTheme.title(),
+        displayMedium: CustomTextTheme.displayMedium(),
       ),
     );
   }

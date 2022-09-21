@@ -10,4 +10,20 @@ class CustomTextTheme {
       fontWeight: FontWeight.w400,
     );
   }
+
+  static TextStyle title() {
+    return GoogleFonts.openSans(
+      fontWeight: FontWeight.w700,
+      fontSize: 32,
+      color: AppColors.dark,
+    );
+  }
+
+  static TextStyle displayMedium() {
+    return GoogleFonts.openSans(
+      fontWeight: FontWeight.w400,
+      fontSize: 16,
+      color: AppColors.texty,
+    );
+  }
 }

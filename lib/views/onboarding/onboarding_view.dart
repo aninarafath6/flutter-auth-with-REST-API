@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:karmalab_assignment/constants/color_constants.dart';
+import 'package:karmalab_assignment/constants/size_constants.dart';
 import 'package:karmalab_assignment/controllers/onbaording_controller.dart';
-import 'package:karmalab_assignment/models/onboarding_model.dart';
+import 'package:karmalab_assignment/views/onboarding/widgets/content_area.dart';
 import 'package:karmalab_assignment/views/onboarding/widgets/onboarding_action.dart';
 import 'package:karmalab_assignment/views/onboarding/widgets/onboarding_banner.dart';
 
@@ -23,7 +22,9 @@ class OnboardingView extends StatelessWidget {
         var itemCount = _onboardingController.onboardingList.length;
 
         return AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
+          duration: const Duration(
+            milliseconds: AppSizes.defaultAnimationDuration,
+          ),
           color: bgColor!.withOpacity(.4),
           height: double.infinity,
           width: double.infinity,
@@ -34,7 +35,7 @@ class OnboardingView extends StatelessWidget {
                 Expanded(
                   flex: 4,
                   child: PageView.builder(
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     controller: _onboardingController.pageController,
                     itemBuilder: (context, index) {
                       var item = _onboardingController.onboardingList[index];
@@ -47,7 +48,7 @@ class OnboardingView extends StatelessWidget {
                             index: index,
                           ),
                           const SizedBox(height: 80),
-                          _contentArea(item),
+                          contentArea(item, context),
                         ],
                       );
                     },
@@ -64,36 +65,6 @@ class OnboardingView extends StatelessWidget {
           ),
         );
       }),
-    );
-  }
-
-  Padding _contentArea(OnboardingModel item) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 21),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            item.title!,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.openSans(
-              fontWeight: FontWeight.w700,
-              fontSize: 32,
-              color: AppColors.dark,
-            ),
-          ),
-          const SizedBox(height: 20),
-          Text(
-            item.description!,
-            textAlign: TextAlign.center,
-            style: GoogleFonts.openSans(
-              fontWeight: FontWeight.w400,
-              fontSize: 16,
-              color: AppColors.texty,
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

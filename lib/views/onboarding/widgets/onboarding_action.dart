@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
+import 'package:karmalab_assignment/constants/size_constants.dart';
 import 'package:karmalab_assignment/controllers/onbaording_controller.dart';
 import 'package:karmalab_assignment/widgets/custom_animated_button.dart';
 
@@ -22,7 +22,7 @@ class OnboardingAction extends StatelessWidget {
 
     var color = _onboardingController.onboardingList[selectedIndex].bgColor;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 21.0),
+      padding: const EdgeInsets.symmetric(horizontal: AppSizes.defaultPadding),
       child: Row(
         children: [
           Expanded(
@@ -31,7 +31,8 @@ class OnboardingAction extends StatelessWidget {
                 itemCount,
                 (index) {
                   return AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
+                    duration: const Duration(
+                        milliseconds: AppSizes.defaultAnimationDuration),
                     margin: const EdgeInsets.symmetric(horizontal: 2),
                     width: selectedIndex == index ? 20 : 10,
                     height: 10,
@@ -53,7 +54,7 @@ class OnboardingAction extends StatelessWidget {
             onTap: () {
               if (_onboardingController.selectedIndex ==
                   _onboardingController.onboardingList.length - 1) {
-                // go to auth selection page
+                // go to auth selection page;
               } else {
                 _onboardingController.next();
               }
