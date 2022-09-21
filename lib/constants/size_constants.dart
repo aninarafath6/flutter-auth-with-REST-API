@@ -1,1 +1,3 @@
-class SizeConstants {}
+class AppSizes {
+  static const double logoSize = 200;
+}

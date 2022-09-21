@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:karmalab_assignment/utils/route_util.dart';
+import 'package:karmalab_assignment/views/splash/splash_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,11 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+    return const MaterialApp(
+      title: 'Learn net',
+      initialRoute: SplashView.routeName,
+      onGenerateRoute: RouteUtil.onGenerateRoute,
+      // theme: ThemeData(
+      //   primarySwatch: Colors.blue,
+      // ),
     );
   }
 }
