@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Learn net',
       initialRoute: SplashView.routeName,
       onGenerateRoute: RouteUtil.onGenerateRoute,
+      debugShowCheckedModeBanner: false,
       // theme: ThemeData(
       //   primarySwatch: Colors.blue,
       // ),
