@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:karmalab_assignment/theme/theme.dart';
 import 'package:karmalab_assignment/utils/route_util.dart';
+import 'package:karmalab_assignment/views/onboarding/onboarding_view.dart';
+import 'package:karmalab_assignment/views/onboarding/widgets/onboarding_action.dart';
 import 'package:karmalab_assignment/views/splash/splash_view.dart';
 
 void main() {
@@ -11,14 +14,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Learn net',
-      initialRoute: SplashView.routeName,
+      initialRoute: OnboardingView.routeName,
       onGenerateRoute: RouteUtil.onGenerateRoute,
       debugShowCheckedModeBanner: false,
-      // theme: ThemeData(
-      //   primarySwatch: Colors.blue,
-      // ),
+      theme: AppTheme.theme(),
     );
   }
 }
