@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
-import 'package:karmalab_assignment/controllers/onbaording_controller.dart';
+import 'package:karmalab_assignment/controllers/onboarding_controller.dart';
 import 'package:karmalab_assignment/views/onboarding/widgets/content_area.dart';
 import 'package:karmalab_assignment/views/onboarding/widgets/onboarding_action.dart';
 import 'package:karmalab_assignment/views/onboarding/widgets/onboarding_banner.dart';
