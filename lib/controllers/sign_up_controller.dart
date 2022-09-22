@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:karmalab_assignment/services/auth_service.dart';
 
-class SignUpController {
+class SignUpController extends GetxController {
   final AuthService _authService = AuthService();
 
   // controllers
@@ -11,14 +12,14 @@ class SignUpController {
   final TextEditingController _conformPasswordController =
       TextEditingController();
 
-  bool _loading = false;
+  final _loading = false.obs;
 
   TextEditingController get nameTextController => _nameTextController;
   TextEditingController get emailController => _emailController;
   TextEditingController get passwordController => _passwordController;
   TextEditingController get conformPasswordController =>
       _conformPasswordController;
-  bool get loading => _loading;
+  bool get loading => _loading.value;
 
   // conform password
   Map<String, dynamic> validate() {
@@ -55,22 +56,17 @@ class SignUpController {
 
 // register
 
-  Future<bool> register() async {
-    // return true;
+  void register() async {
     if (validate()["status"]) {
-      _loading = true;
-
-      var response = await _authService.register(
+      _loading.value = true;
+      await Future.delayed(const Duration(seconds: 2));
+      await _authService.register(
         {
           "email": _emailController.text.toString(),
           "password": _passwordController.text.toString(),
         },
       );
-      _loading = false;
-
-      return true;
-    } else {
-      return false;
-    }
+      _loading.value = false;
+    } else {}
   }
 }

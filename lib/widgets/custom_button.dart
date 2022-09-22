@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
@@ -9,10 +10,12 @@ class CustomButton extends StatelessWidget {
     this.label = "label",
     this.isFilled = true,
     this.onTap,
+    this.isLoading = false,
   }) : super(key: key);
   final bool? isFilled;
   final String? label;
   final Function()? onTap;
+  final bool? isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +38,16 @@ class CustomButton extends StatelessWidget {
         width: double.infinity,
         height: context.getHeight(5),
         child: Center(
-          child: Text(
-            label!,
-            style: GoogleFonts.openSans(
-                color: isFilled! ? AppColors.white : AppColors.darkOrange,
-                fontSize: 20),
-          ),
+          child: isLoading!
+              ? const CupertinoActivityIndicator(
+                  color: AppColors.white,
+                )
+              : Text(
+                  label!,
+                  style: GoogleFonts.openSans(
+                      color: isFilled! ? AppColors.white : AppColors.darkOrange,
+                      fontSize: 20),
+                ),
         ),
       ),
     );

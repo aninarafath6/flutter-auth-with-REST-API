@@ -21,7 +21,7 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
-  final SignUpController _signUpController = SignUpController();
+  final SignUpController _signUpController = Get.put(SignUpController());
   bool secure = true;
   @override
   Widget build(BuildContext context) {
@@ -47,23 +47,26 @@ class _SignUpViewState extends State<SignUpView> {
                   const SizedBox(height: 50),
                   _signUpForm(_signUpController),
                   const SizedBox(height: 32),
-                  CustomButton(
-                    label: "Sign Up",
-                    onTap: () {
-                      var res = _signUpController.validate();
-                      // print(res["status"]);
-                      if (res["status"]) {
-                        _signUpController.register();
-                      } else {
-                        Get.snackbar(
-                          "Oops 😕",
-                          res["message"],
-                          margin: const EdgeInsets.all(20),
-                          snackPosition: SnackPosition.BOTTOM,
-                        );
-                      }
-                    },
-                  ),
+                  Obx(() {
+                    return CustomButton(
+                      label: "Sign Up",
+                      isLoading: _signUpController.loading,
+                      onTap: () {
+                        var res = _signUpController.validate();
+                        // print(res["status"]);
+                        if (res["status"]) {
+                          _signUpController.register();
+                        } else {
+                          Get.snackbar(
+                            "Oops 😕",
+                            res["message"],
+                            margin: const EdgeInsets.all(20),
+                            snackPosition: SnackPosition.BOTTOM,
+                          );
+                        }
+                      },
+                    );
+                  }),
                   const SizedBox(height: 15),
                   Fancy2Text(
                     first: "Already have an account? ",
