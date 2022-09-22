@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:karmalab_assignment/controllers/base_controller.dart';
 import 'package:karmalab_assignment/services/auth_service.dart';
+import 'package:karmalab_assignment/services/base/app_exceptions.dart';
 
-class SignUpController extends GetxController {
+class SignUpController extends GetxController with BaseController {
   final AuthService _authService = AuthService();
 
   // controllers
@@ -22,51 +24,55 @@ class SignUpController extends GetxController {
   bool get loading => _loading.value;
 
   // conform password
-  Map<String, dynamic> validate() {
+  bool validate() {
     bool emailValid = RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(_emailController.text);
 
-    if (_nameTextController.text == "" ||
-        _emailController.text == "" ||
-        passwordController.text == "" ||
-        _conformPasswordController.text == "") {
-      return {"status": false, "message": "please fill all given inputs !!"};
-    } else {
-      if (emailValid) {
-        if (passwordController.text.length >= 8) {
-          if (passwordController.text == conformPasswordController.text) {
-            return {
-              "status": true,
-            };
+    try {
+      if (_nameTextController.text == "" ||
+          _emailController.text == "" ||
+          passwordController.text == "" ||
+          _conformPasswordController.text == "") {
+        throw InvalidException("please fill all given inputs !!", false);
+      } else {
+        if (emailValid) {
+          if (passwordController.text.length >= 8) {
+            if (passwordController.text == conformPasswordController.text) {
+              return true;
+            } else {
+              throw InvalidException("conform your password !!", false);
+            }
           } else {
-            return {"status": false, "message": "conform your password !!"};
+            throw InvalidException("password must be greater than 8 !!", false);
           }
         } else {
-          return {
-            "status": false,
-            "message": "password must be greater than 8 !!"
-          };
+          throw InvalidException("Email is not valid !!", false);
         }
-      } else {
-        return {"status": false, "message": "Email is not valid !!"};
       }
+    } catch (e) {
+      handleError(e);
+      return false;
+      // rethrow;
     }
   }
 
 // register
 
-  void register() async {
-    if (validate()["status"]) {
+  Future<void> register(Function(dynamic)? success) async {
+    final valid = validate();
+    if (valid) {
       _loading.value = true;
       await Future.delayed(const Duration(seconds: 2));
-      await _authService.register(
+      dynamic status = await _authService.register(
         {
           "email": _emailController.text.toString(),
           "password": _passwordController.text.toString(),
         },
       );
       _loading.value = false;
-    } else {}
+      await Future.delayed(const Duration(milliseconds: 300));
+      success!(status);
+    }
   }
 }

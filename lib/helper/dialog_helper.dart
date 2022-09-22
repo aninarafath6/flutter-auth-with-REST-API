@@ -5,11 +5,11 @@ class DialogHelper {
   // error snackbar
   static void showErrorDialog({
     String? title = "Oops 🤔",
-    String? description = "something went wrong",
+    String? description,
   }) {
     Get.snackbar(
       title!,
-      description ?? "sdfkslf",
+      description ?? "something went wrong",
       margin: const EdgeInsets.all(20),
       snackPosition: SnackPosition.BOTTOM,
     );

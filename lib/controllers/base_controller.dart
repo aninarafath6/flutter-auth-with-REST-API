@@ -6,7 +6,7 @@ class BaseController {
     // print(error);
     if (error is BadRequestException) {
       var message = error.message;
-      print(error);
+      // print(error);
       DialogHelper.showErrorDialog(description: message);
     } else if (error is FetchDataException) {
       var message = error.message;
@@ -14,6 +14,9 @@ class BaseController {
     } else if (error is ApiNotRespondingException) {
       // var message = error.message;
       DialogHelper.showErrorDialog(description: "It took longer to respond.");
+    } else if (error is InvalidException) {
+      DialogHelper.showErrorDialog(
+          description: error.message, title: "Oops 🥸");
     }
   }
 }

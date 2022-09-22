@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
 import 'package:karmalab_assignment/controllers/sign_up_controller.dart';
 import 'package:karmalab_assignment/utils/dimension.dart';
 import 'package:karmalab_assignment/views/authentication/login/login_view.dart';
+import 'package:karmalab_assignment/views/authentication/verification/verification_view.dart';
 import 'package:karmalab_assignment/views/authentication/widget/auth_header.dart';
 import 'package:karmalab_assignment/widgets/custom_button.dart';
 import 'package:karmalab_assignment/widgets/custom_input.dart';
@@ -49,23 +49,18 @@ class _SignUpViewState extends State<SignUpView> {
                   const SizedBox(height: 32),
                   Obx(() {
                     return CustomButton(
-                      label: "Sign Up",
-                      isLoading: _signUpController.loading,
-                      onTap: () {
-                        var res = _signUpController.validate();
-                        // print(res["status"]);
-                        if (res["status"]) {
-                          _signUpController.register();
-                        } else {
-                          Get.snackbar(
-                            "Oops 😕",
-                            res["message"],
-                            margin: const EdgeInsets.all(20),
-                            snackPosition: SnackPosition.BOTTOM,
+                        label: "Sign Up",
+                        isLoading: _signUpController.loading,
+                        onTap: () async {
+                          await _signUpController.register(
+                            (status) {
+                              if (status != null) {
+                                Navigator.pushNamed(
+                                    context, VerificationView.routeName);
+                              }
+                            },
                           );
-                        }
-                      },
-                    );
+                        });
                   }),
                   const SizedBox(height: 15),
                   Fancy2Text(

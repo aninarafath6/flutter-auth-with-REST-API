@@ -19,7 +19,7 @@ class BaseClient {
 
     try {
       var response = await client.post(uri, body: payload, headers: header);
-      _processResponse(response);
+      return _processResponse(response);
     } on SocketException {
       throw FetchDataException("No Internet connection", uri.toString());
     }
@@ -51,6 +51,7 @@ class BaseClient {
         throw UnAuthorizedException(
             errors[errors.keys.elementAt(0)][0].toString(),
             response.request?.url.toString());
+
       case 500:
       default:
         throw FetchDataException(
