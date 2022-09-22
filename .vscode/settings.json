@@ -3,6 +3,7 @@
         "Cupertino",
         "Getx",
         "karmalab",
-        "Pinput"
+        "Pinput",
+        "prefs"
     ]
 }

@@ -18,6 +18,7 @@ dependencies:
   remixicon: ^1.0.0
   pinput: ^2.2.12
   http: ^0.13.5
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:
