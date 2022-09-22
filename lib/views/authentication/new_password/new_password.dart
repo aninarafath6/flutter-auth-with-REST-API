@@ -25,10 +25,10 @@ class _NewPassWordViewState extends State<NewPassWordView> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 100),
+              context.spacing(height: 10),
               Image.asset(
                 AppImages.newPass,
-                width: context.getWidth(40),
+                width: context.getWidth(65),
               ),
               const SizedBox(height: 50),
               const AuthHeader(

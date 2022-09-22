@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
+import 'package:karmalab_assignment/utils/dimension.dart';
 import 'package:karmalab_assignment/views/authentication/login/login_view.dart';
 import 'package:karmalab_assignment/views/authentication/verification/verification_view.dart';
 import 'package:karmalab_assignment/views/authentication/widget/auth_header.dart';
@@ -35,7 +36,7 @@ class _SignUpViewState extends State<SignUpView> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 80),
+                  context.spacing(height: 5),
                   const AuthHeader(
                     subTitle: "Create an account",
                     title: "Sign Up",
@@ -57,7 +58,8 @@ class _SignUpViewState extends State<SignUpView> {
                         Navigator.pushNamed(context, LoginView.routeName),
                   ),
                   const SizedBox(height: 50),
-                  SocialMediaAuthArea()
+                  SocialMediaAuthArea(),
+                  const SizedBox(height: 15),
                 ],
               ),
             ),

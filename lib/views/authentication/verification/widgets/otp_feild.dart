@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
+import 'package:karmalab_assignment/utils/dimension.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpFelid extends StatelessWidget {
@@ -29,7 +30,10 @@ class OtpFelid extends StatelessWidget {
         border: Border.all(color: AppColors.darkOrange, width: 2),
         borderRadius: BorderRadius.circular(8),
       ),
-      defaultPinTheme: defaultTheme,
+      defaultPinTheme: defaultTheme.copyWith(
+        width: context.getWidth(17),
+        height: context.getHeight(10),
+      ),
     );
   }
 }
