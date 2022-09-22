@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
 import 'package:karmalab_assignment/views/authentication/forgot/forgot_password.dart';
+import 'package:karmalab_assignment/views/authentication/siginup/signup_view.dart';
 import 'package:karmalab_assignment/views/authentication/widget/auth_header.dart';
 import 'package:karmalab_assignment/widgets/custom_button.dart';
 import 'package:karmalab_assignment/widgets/custom_input.dart';
@@ -50,10 +51,12 @@ class _LoginViewState extends State<LoginView> {
                   const SizedBox(height: 32),
                   const CustomButton(label: "Sign In"),
                   const SizedBox(height: 15),
-                  const Fancy2Text(
+                  Fancy2Text(
                     first: "Don’t have an account? ",
                     second: " Sign Up",
                     isCenter: true,
+                    onTap: () =>
+                        Navigator.pushNamed(context, SignUpView.routeName),
                   ),
                   const SizedBox(height: 50),
                   SocialMediaAuthArea()

@@ -37,7 +37,7 @@ class SelectAuthView extends StatelessWidget {
                 padding: const EdgeInsets.only(
                   left: AppSizes.defaultPadding + 60,
                   right: AppSizes.defaultPadding + 60,
-                  top: AppSizes.defaultPadding + 40,
+                  top: AppSizes.defaultPadding + 30,
                 ),
                 child: Column(
                   children: [
@@ -46,7 +46,7 @@ class SelectAuthView extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .titleLarge!
-                          .copyWith(fontSize: 28),
+                          .copyWith(fontSize: context.getWidth(6)),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 15),
@@ -59,7 +59,7 @@ class SelectAuthView extends StatelessWidget {
                             style: Theme.of(context)
                                 .textTheme
                                 .displayLarge!
-                                .copyWith(fontSize: 18),
+                                .copyWith(fontSize: context.getWidth(4.2)),
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 50),
@@ -72,7 +72,9 @@ class SelectAuthView extends StatelessWidget {
                             isFilled: false,
                             label: "Sign Up",
                             onTap: () => Navigator.pushNamed(
-                                context, SignUpView.routeName),
+                              context,
+                              SignUpView.routeName,
+                            ),
                           )
                         ],
                       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:karmalab_assignment/constants/image_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
+import 'package:karmalab_assignment/utils/dimension.dart';
 import 'package:karmalab_assignment/views/authentication/new_password/new_password.dart';
 import 'package:karmalab_assignment/views/authentication/verification/widgets/otp_feild.dart';
 import 'package:karmalab_assignment/views/authentication/widget/auth_header.dart';
@@ -25,7 +26,7 @@ class VerificationView extends StatelessWidget {
                 const SizedBox(height: 100),
                 Image.asset(
                   AppImages.verificationImage,
-                  width: AppSizes.onboardingImageSize,
+                  width: context.getWidth(40),
                 ),
                 const SizedBox(height: 25),
                 const AuthHeader(

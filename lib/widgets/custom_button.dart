@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
+import 'package:karmalab_assignment/utils/dimension.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -32,7 +33,7 @@ class CustomButton extends StatelessWidget {
       ),
       child: SizedBox(
         width: double.infinity,
-        height: 45,
+        height: context.getHeight(5),
         child: Center(
           child: Text(
             label!,

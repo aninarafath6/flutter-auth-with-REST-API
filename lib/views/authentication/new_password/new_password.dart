@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:karmalab_assignment/constants/image_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
+import 'package:karmalab_assignment/utils/dimension.dart';
 import 'package:karmalab_assignment/views/authentication/widget/auth_header.dart';
 import 'package:karmalab_assignment/widgets/custom_button.dart';
 import 'package:karmalab_assignment/widgets/custom_input.dart';
@@ -27,7 +28,7 @@ class _NewPassWordViewState extends State<NewPassWordView> {
               const SizedBox(height: 100),
               Image.asset(
                 AppImages.newPass,
-                width: AppSizes.onboardingImageSize,
+                width: context.getWidth(40),
               ),
               const SizedBox(height: 50),
               const AuthHeader(
