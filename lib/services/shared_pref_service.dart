@@ -11,6 +11,7 @@ class SharedPrefService {
     pref.setString("email", email ?? "email");
     pref.setInt("id", id ?? 0);
     pref.setInt("otp", otp ?? 0);
+    pref.setString("token", token ?? "");
   }
 
   Future<String> start() async {
@@ -32,6 +33,15 @@ class SharedPrefService {
     });
 
     return user;
+  }
+
+  Future<void> forgotPassCred({String? token, int? otp}) async {
+    SharedPreferences pref = await _prefs;
+    // ? simulate delay
+    await Future.delayed(const Duration(seconds: 0));
+
+    pref.setInt("otp", otp ?? 0);
+    pref.setString("token", token ?? "");
   }
 
   void clear() async {

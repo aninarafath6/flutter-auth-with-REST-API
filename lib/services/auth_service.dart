@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:karmalab_assignment/constants/network_constants.dart';
 import 'package:karmalab_assignment/controllers/base_controller.dart';
+import 'package:karmalab_assignment/helper/dialog_helper.dart';
 import 'package:karmalab_assignment/services/base/base_client.dart';
 import 'package:karmalab_assignment/services/shared_pref_service.dart';
 
@@ -64,6 +65,15 @@ class AuthService extends BaseController {
     if (result != null) {
       result = json.decode(result);
       debugPrint("otp send");
+      _prefService.forgotPassCred(
+        token: result["token"],
+        otp: int.parse(result["otp"]),
+      );
+      DialogHelper.showSnackBar(
+        description: "${result["otp"]} is your Learn net verification code.",
+        duration: const Duration(seconds: 10),
+      );
+
       return true;
     } else {
       return false;
