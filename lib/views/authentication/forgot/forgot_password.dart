@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:karmalab_assignment/constants/image_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
+import 'package:karmalab_assignment/controllers/forgot_password_controller.dart';
 import 'package:karmalab_assignment/utils/dimension.dart';
 import 'package:karmalab_assignment/views/authentication/verification/verification_view.dart';
+// import 'package:karmalab_assignment/views/authentication/verification/verification_view.dart';
 import 'package:karmalab_assignment/views/authentication/widget/auth_header.dart';
 import 'package:karmalab_assignment/widgets/custom_button.dart';
 import 'package:karmalab_assignment/widgets/custom_input.dart';
@@ -11,7 +14,8 @@ import 'package:karmalab_assignment/widgets/fancy2_text.dart';
 class ForgotPassWord extends StatelessWidget {
   const ForgotPassWord({Key? key}) : super(key: key);
   static const routeName = '/forgot-password';
-
+  static final ForgotPasswordController _forgotPasswordController =
+      Get.put(ForgotPasswordController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,21 +38,29 @@ class ForgotPassWord extends StatelessWidget {
                 subTitle: "Enter your email  address",
               ),
               const SizedBox(height: 30),
-              const CustomInputFelid(
+              CustomInputFelid(
                 hint: "Business Name",
+                controller: _forgotPasswordController.nameTextController,
                 lowerMargin: true,
               ),
-              const CustomInputFelid(
+              CustomInputFelid(
                 hint: "Email",
                 keyboardType: TextInputType.emailAddress,
+                controller: _forgotPasswordController.emailController,
               ),
-              CustomButton(
-                label: "Sent OTP",
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  VerificationView.routeName,
-                ),
-              ),
+              Obx(() {
+                return CustomButton(
+                  label: "Sent OTP",
+                  isLoading: _forgotPasswordController.loading,
+                  onTap: () => _forgotPasswordController.sendOtp((bool status) {
+                    if (status) {
+                      Get.toNamed(
+                        VerificationView.routeName,
+                      );
+                    }
+                  }),
+                );
+              }),
               const SizedBox(height: 20),
               const Fancy2Text(
                 first: "Didn’t received OPT? ",

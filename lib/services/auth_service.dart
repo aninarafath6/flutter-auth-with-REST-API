@@ -1,6 +1,7 @@
 // import 'package:flutter/rendering.dart';
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:karmalab_assignment/constants/network_constants.dart';
 import 'package:karmalab_assignment/controllers/base_controller.dart';
 import 'package:karmalab_assignment/services/base/base_client.dart';
@@ -46,6 +47,23 @@ class AuthService extends BaseController {
         email: result["user"]["email"],
         token: result["user"]["token"],
       );
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // !! send otp
+  Future<bool> sentOtp(dynamic object) async {
+    var result = await _baseClient.post(
+      NetworkConstants.forgotPassWord,
+      object,
+      header: {'Content-Type': "application/json"},
+    ).catchError(handleError);
+
+    if (result != null) {
+      result = json.decode(result);
+      debugPrint("otp send");
       return true;
     } else {
       return false;
