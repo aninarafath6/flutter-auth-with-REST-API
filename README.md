@@ -1,16 +1,6 @@
 # karmalab_assignment
 
-A new Flutter project.
+Mechine test
 
-## Getting Started
+![Simulator Screen Shot - iPhone 14 Pro Max - 2022-09-23 at 03 10 57](https://user-images.githubusercontent.com/65447144/191857377-ad14c411-5964-4390-9ec3-f49fd55dd34a.png)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
