@@ -22,8 +22,6 @@ class BaseClient {
       _processResponse(response);
     } on SocketException {
       throw FetchDataException("No Internet connection", uri.toString());
-    } catch (e) {
-      throw FetchDataException(e.toString(), uri.toString());
     }
   }
 
@@ -41,11 +39,18 @@ class BaseClient {
         var responseJson = utf8.decode(response.bodyBytes);
         return responseJson;
       case 400:
-        throw BadRequestException(bodyBytes, response.request?.url.toString());
+        var errors = json.decode(bodyBytes)["errors"];
+
+        throw BadRequestException(
+            errors[errors.keys.elementAt(0)][0].toString(),
+            response.request?.url.toString());
       case 401:
       case 403:
+        var errors = json.decode(bodyBytes)["errors"];
+
         throw UnAuthorizedException(
-            bodyBytes, response.request?.url.toString());
+            errors[errors.keys.elementAt(0)][0].toString(),
+            response.request?.url.toString());
       case 500:
       default:
         throw FetchDataException(
