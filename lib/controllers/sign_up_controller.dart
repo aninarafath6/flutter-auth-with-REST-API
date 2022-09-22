@@ -23,7 +23,6 @@ class SignUpController extends GetxController with BaseController {
       _conformPasswordController;
   bool get loading => _loading.value;
 
-  // conform password
   bool validate() {
     bool emailValid = RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")

@@ -42,9 +42,9 @@ class AuthService extends BaseController {
     if (result != null) {
       result = json.decode(result);
       _prefService.userLog(
-        id: result["id"],
-        email: result["email"],
-        token: result["token"],
+        id: result["user"]["id"],
+        email: result["user"]["email"],
+        token: result["user"]["token"],
       );
       return true;
     } else {

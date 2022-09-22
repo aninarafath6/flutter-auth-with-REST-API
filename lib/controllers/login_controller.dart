@@ -6,7 +6,7 @@ import 'package:karmalab_assignment/services/base/app_exceptions.dart';
 import 'package:karmalab_assignment/services/shared_pref_service.dart';
 import 'package:karmalab_assignment/views/authentication/select_auth/select_auth_view.dart';
 
-class LoginController with BaseController {
+class LoginController extends GetxController with BaseController {
   final SharedPrefService _sharedPrefService = SharedPrefService();
   final _formKey = GlobalKey<FormState>();
   final AuthService _authService = AuthService();
@@ -53,7 +53,7 @@ class LoginController with BaseController {
     }
   }
 
-  Future<void> register(Function(bool)? success) async {
+  Future<void> login(Function(bool)? success) async {
     final valid = validate();
     if (valid) {
       _loading.value = true;
