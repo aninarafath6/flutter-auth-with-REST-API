@@ -55,7 +55,7 @@ class _LoginViewState extends State<LoginView> {
                     second: " Sign Up",
                     isCenter: true,
                   ),
-                  const SizedBox(height: 35),
+                  const SizedBox(height: 50),
                   SocialMediaAuthArea()
                 ],
               ),
