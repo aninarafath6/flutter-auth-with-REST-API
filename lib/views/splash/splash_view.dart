@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
 import 'package:karmalab_assignment/constants/image_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
+import 'package:karmalab_assignment/services/shared_pref_service.dart';
 import 'package:karmalab_assignment/views/splash/widgets/overlay_bg.dart';
 
 class SplashView extends StatefulWidget {
@@ -24,6 +25,7 @@ class _SplashViewState extends State<SplashView>
   late Animation<double> topAnimation;
   late Animation<double> bottomAnimation;
 
+  final SharedPrefService _sharedPrefService = SharedPrefService();
   @override
   void initState() {
     _controller = AnimationController(
@@ -39,7 +41,8 @@ class _SplashViewState extends State<SplashView>
       ..addListener(() async {
         if (_controller.isCompleted) {
           await Future.delayed(const Duration(seconds: 1));
-          Navigator.pushReplacementNamed(context, "/onboarding");
+          String routeName = await _sharedPrefService.start();
+          Navigator.pushReplacementNamed(context, routeName);
         }
         setState(() {});
       });

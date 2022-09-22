@@ -5,6 +5,7 @@ import 'package:karmalab_assignment/views/authentication/new_password/new_passwo
 import 'package:karmalab_assignment/views/authentication/select_auth/select_auth_view.dart';
 import 'package:karmalab_assignment/views/authentication/siginup/signup_view.dart';
 import 'package:karmalab_assignment/views/authentication/verification/verification_view.dart';
+import 'package:karmalab_assignment/views/home/home_view.dart';
 import 'package:karmalab_assignment/views/onboarding/onboarding_view.dart';
 import 'package:karmalab_assignment/views/splash/splash_view.dart';
 
@@ -26,6 +27,8 @@ class RouteUtil {
       case VerificationView.routeName:
         return MaterialPageRoute(
             builder: (context) => const VerificationView());
+      case HomeView.routeName:
+        return MaterialPageRoute(builder: (context) => const HomeView());
       case NewPassWordView.routeName:
         return MaterialPageRoute(builder: (context) => const NewPassWordView());
       default:

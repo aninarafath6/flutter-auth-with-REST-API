@@ -59,12 +59,14 @@ class SignUpController extends GetxController with BaseController {
 
 // register
 
-  Future<void> register(Function(dynamic)? success) async {
+  Future<void> register(Function(bool)? success) async {
     final valid = validate();
     if (valid) {
       _loading.value = true;
       await Future.delayed(const Duration(seconds: 2));
-      dynamic status = await _authService.register(
+
+// ? register method
+      bool status = await _authService.register(
         {
           "email": _emailController.text.toString(),
           "password": _passwordController.text.toString(),

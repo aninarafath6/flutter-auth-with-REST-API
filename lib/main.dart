@@ -5,6 +5,8 @@ import 'package:karmalab_assignment/utils/route_util.dart';
 import 'package:karmalab_assignment/views/splash/splash_view.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
 }
 
@@ -13,6 +15,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
     return GetMaterialApp(
       title: 'Learn net',
       initialRoute: SplashView.routeName,

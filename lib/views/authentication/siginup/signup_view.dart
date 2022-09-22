@@ -5,10 +5,10 @@ import 'package:karmalab_assignment/constants/size_constants.dart';
 import 'package:karmalab_assignment/controllers/sign_up_controller.dart';
 import 'package:karmalab_assignment/utils/dimension.dart';
 import 'package:karmalab_assignment/views/authentication/login/login_view.dart';
-import 'package:karmalab_assignment/views/authentication/verification/verification_view.dart';
+import 'package:karmalab_assignment/views/authentication/siginup/widgets/sign_up_form.dart';
 import 'package:karmalab_assignment/views/authentication/widget/auth_header.dart';
+import 'package:karmalab_assignment/views/home/home_view.dart';
 import 'package:karmalab_assignment/widgets/custom_button.dart';
-import 'package:karmalab_assignment/widgets/custom_input.dart';
 import 'package:karmalab_assignment/widgets/fancy2_text.dart';
 import 'package:karmalab_assignment/widgets/social_media_log.dart';
 
@@ -45,7 +45,13 @@ class _SignUpViewState extends State<SignUpView> {
                     title: "Sign Up",
                   ),
                   const SizedBox(height: 50),
-                  _signUpForm(_signUpController),
+                  signUpForm(
+                    _signUpController,
+                    secure,
+                    () => setState(() {
+                      secure = !secure;
+                    }),
+                  ),
                   const SizedBox(height: 32),
                   Obx(() {
                     return CustomButton(
@@ -54,9 +60,11 @@ class _SignUpViewState extends State<SignUpView> {
                         onTap: () async {
                           await _signUpController.register(
                             (status) {
-                              if (status != null) {
-                                Navigator.pushNamed(
-                                    context, VerificationView.routeName);
+                              if (status) {
+                                Get.offNamedUntil(
+                                  HomeView.routeName,
+                                  (_) => false,
+                                );
                               }
                             },
                           );
@@ -81,38 +89,6 @@ class _SignUpViewState extends State<SignUpView> {
           ),
         ),
       ),
-    );
-  }
-
-  Column _signUpForm(SignUpController controller) {
-    return Column(
-      children: [
-        CustomInputFelid(
-          hint: "Business Name",
-          controller: controller.nameTextController,
-        ),
-        CustomInputFelid(
-          hint: "Email",
-          controller: controller.emailController,
-          keyboardType: TextInputType.emailAddress,
-        ),
-        CustomInputFelid(
-          hint: "Password",
-          controller: controller.passwordController,
-        ),
-        CustomInputFelid(
-          hint: "conform password",
-          controller: controller.conformPasswordController,
-          isPassWord: true,
-          secure: secure,
-          lowerMargin: true,
-          toggle: () {
-            setState(() {
-              secure = !secure;
-            });
-          },
-        ),
-      ],
     );
   }
 }
