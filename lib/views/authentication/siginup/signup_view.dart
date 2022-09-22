@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
+import 'package:karmalab_assignment/controllers/sign_up_controller.dart';
 import 'package:karmalab_assignment/utils/dimension.dart';
 import 'package:karmalab_assignment/views/authentication/login/login_view.dart';
-import 'package:karmalab_assignment/views/authentication/verification/verification_view.dart';
 import 'package:karmalab_assignment/views/authentication/widget/auth_header.dart';
 import 'package:karmalab_assignment/widgets/custom_button.dart';
 import 'package:karmalab_assignment/widgets/custom_input.dart';
@@ -19,6 +21,7 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
+  final SignUpController _signUpController = SignUpController();
   bool secure = true;
   @override
   Widget build(BuildContext context) {
@@ -42,20 +45,34 @@ class _SignUpViewState extends State<SignUpView> {
                     title: "Sign Up",
                   ),
                   const SizedBox(height: 50),
-                  _signUpForm(),
+                  _signUpForm(_signUpController),
                   const SizedBox(height: 32),
                   CustomButton(
                     label: "Sign Up",
-                    onTap: () => Navigator.pushNamed(
-                        context, VerificationView.routeName),
+                    onTap: () {
+                      var res = _signUpController.validate();
+                      // print(res["status"]);
+                      if (res["status"]) {
+                        _signUpController.register();
+                      } else {
+                        Get.snackbar(
+                          "Oops 😕",
+                          res["message"],
+                          margin: const EdgeInsets.all(20),
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                      }
+                    },
                   ),
                   const SizedBox(height: 15),
                   Fancy2Text(
                     first: "Already have an account? ",
                     second: " Login",
                     isCenter: true,
-                    onTap: () =>
-                        Navigator.pushNamed(context, LoginView.routeName),
+                    onTap: () => Navigator.pushNamed(
+                      context,
+                      LoginView.routeName,
+                    ),
                   ),
                   const SizedBox(height: 50),
                   SocialMediaAuthArea(),
@@ -69,19 +86,25 @@ class _SignUpViewState extends State<SignUpView> {
     );
   }
 
-  Column _signUpForm() {
+  Column _signUpForm(SignUpController controller) {
     return Column(
       children: [
-        const CustomInputFelid(
+        CustomInputFelid(
           hint: "Business Name",
+          controller: controller.nameTextController,
         ),
-        const CustomInputFelid(
-            hint: "Email", keyboardType: TextInputType.emailAddress),
-        const CustomInputFelid(
+        CustomInputFelid(
+          hint: "Email",
+          controller: controller.emailController,
+          keyboardType: TextInputType.emailAddress,
+        ),
+        CustomInputFelid(
           hint: "Password",
+          controller: controller.passwordController,
         ),
         CustomInputFelid(
           hint: "conform password",
+          controller: controller.conformPasswordController,
           isPassWord: true,
           secure: secure,
           lowerMargin: true,

@@ -11,6 +11,7 @@ class CustomInputFelid extends StatelessWidget {
     this.toggle,
     this.keyboardType = TextInputType.text,
     this.lowerMargin = false,
+    this.controller,
   }) : super(key: key);
   final String? hint;
   final TextInputType? keyboardType;
@@ -18,6 +19,7 @@ class CustomInputFelid extends StatelessWidget {
   final bool? secure;
   final Function()? toggle;
   final bool? lowerMargin;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +34,7 @@ class CustomInputFelid extends StatelessWidget {
       ),
       child: Center(
         child: TextField(
+          controller: controller,
           obscureText: secure!,
           keyboardType: keyboardType,
           cursorColor: AppColors.darkOrange,
