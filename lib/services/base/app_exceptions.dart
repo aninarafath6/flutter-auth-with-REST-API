@@ -38,3 +38,8 @@ class UnAuthorizedException extends NetworkException {
   UnAuthorizedException(String? message, String? url)
       : super(message, "un authorized exception", url);
 }
+
+class InternalServerException extends NetworkException {
+  InternalServerException(String? message, String? url)
+      : super(message, "internal server exception", url);
+}

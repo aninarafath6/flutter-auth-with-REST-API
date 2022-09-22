@@ -17,6 +17,7 @@ class SharedPrefService {
     SharedPreferences pref = await _prefs;
 
     var status = pref.getBool("login");
+
     return status! ? HomeView.routeName : OnboardingView.routeName;
   }
 
@@ -35,7 +36,7 @@ class SharedPrefService {
 
   void clear() async {
     SharedPreferences pref = await _prefs;
-    pref.remove("login");
+    pref.setBool("login", false);
     pref.remove("email");
     pref.remove("id");
     pref.remove("otp");

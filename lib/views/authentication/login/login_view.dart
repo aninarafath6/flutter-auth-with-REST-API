@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
+import 'package:karmalab_assignment/controllers/login_controller.dart';
 import 'package:karmalab_assignment/utils/dimension.dart';
 import 'package:karmalab_assignment/views/authentication/forgot/forgot_password.dart';
 import 'package:karmalab_assignment/views/authentication/siginup/signup_view.dart';
@@ -19,6 +20,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  final LoginController _loginController = LoginController();
   bool secure = true;
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class _LoginViewState extends State<LoginView> {
                     title: "Sign In",
                   ),
                   const SizedBox(height: 50),
-                  _loginForm(),
+                  _loginForm(_loginController),
                   Fancy2Text(
                     first: "Forgot password? ",
                     second: "Reset",
@@ -70,26 +72,34 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  Column _loginForm() {
-    return Column(
-      children: [
-        const CustomInputFelid(
-          hint: "Business Name",
-        ),
-        const CustomInputFelid(
-            hint: "Email", keyboardType: TextInputType.emailAddress),
-        CustomInputFelid(
-          hint: "Password",
-          isPassWord: true,
-          secure: secure,
-          lowerMargin: true,
-          toggle: () {
-            setState(() {
-              secure = !secure;
-            });
-          },
-        ),
-      ],
+  Form _loginForm(LoginController controller) {
+    return Form(
+      key: controller.formKey,
+      child: Column(
+        children: [
+          CustomInputFelid(
+            hint: "Business Name",
+            controller: controller.nameTextController,
+          ),
+          CustomInputFelid(
+            hint: "Email",
+            keyboardType: TextInputType.emailAddress,
+            controller: controller.emailController,
+          ),
+          CustomInputFelid(
+            hint: "Password",
+            isPassWord: true,
+            secure: secure,
+            lowerMargin: true,
+            controller: controller.passwordController,
+            toggle: () {
+              setState(() {
+                secure = !secure;
+              });
+            },
+          ),
+        ],
+      ),
     );
   }
 }

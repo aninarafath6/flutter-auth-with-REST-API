@@ -53,6 +53,8 @@ class BaseClient {
             response.request?.url.toString());
 
       case 500:
+        throw InternalServerException(
+            "something went wrong", response.request?.url.toString());
       default:
         throw FetchDataException(
             "Error occur with code : ${response.statusCode}",
