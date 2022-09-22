@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
     return GetMaterialApp(
       title: 'Learn net',
       initialRoute: SplashView.routeName,
