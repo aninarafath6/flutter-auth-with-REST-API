@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
+import 'package:karmalab_assignment/controllers/verify_otp_controller.dart';
 import 'package:karmalab_assignment/utils/dimension.dart';
 import 'package:pinput/pinput.dart';
 
@@ -7,6 +9,9 @@ class OtpFelid extends StatelessWidget {
   const OtpFelid({
     Key? key,
   }) : super(key: key);
+
+  static final VerifyOtpController _verifyOtpController =
+      Get.put(VerifyOtpController());
 
   static final defaultTheme = PinTheme(
     width: 70,
@@ -24,7 +29,13 @@ class OtpFelid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Pinput(
-      onCompleted: (pin) => debugPrint(pin),
+      onCompleted: (pin) {
+        // print("oncomplete");
+        _verifyOtpController.onChange(pin);
+      },
+      onChanged: ((value) {
+        _verifyOtpController.onChange(value);
+      }),
       hapticFeedbackType: HapticFeedbackType.mediumImpact,
       focusedPinTheme: defaultTheme.copyDecorationWith(
         border: Border.all(color: AppColors.darkOrange, width: 2),

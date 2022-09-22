@@ -16,6 +16,16 @@ class SignUpController extends GetxController with BaseController {
 
   final _loading = false.obs;
 
+  @override
+  void dispose() {
+    _nameTextController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _conformPasswordController.dispose();
+
+    super.dispose();
+  }
+
   TextEditingController get nameTextController => _nameTextController;
   TextEditingController get emailController => _emailController;
   TextEditingController get passwordController => _passwordController;

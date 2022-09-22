@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:karmalab_assignment/constants/image_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
+import 'package:karmalab_assignment/controllers/verify_otp_controller.dart';
 import 'package:karmalab_assignment/utils/dimension.dart';
-import 'package:karmalab_assignment/views/authentication/new_password/new_password.dart';
+// import 'package:karmalab_assignment/views/authentication/new_password/new_password.dart';
 import 'package:karmalab_assignment/views/authentication/verification/widgets/otp_feild.dart';
 import 'package:karmalab_assignment/views/authentication/widget/auth_header.dart';
 import 'package:karmalab_assignment/widgets/custom_button.dart';
@@ -11,6 +13,9 @@ import 'package:karmalab_assignment/widgets/fancy2_text.dart';
 class VerificationView extends StatelessWidget {
   const VerificationView({Key? key}) : super(key: key);
   static const routeName = "/verification-otp";
+
+  static final VerifyOtpController _verifyOtpController =
+      Get.put(VerifyOtpController());
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +43,11 @@ class VerificationView extends StatelessWidget {
                 const SizedBox(height: 50),
                 CustomButton(
                   label: "Verify",
-                  onTap: () => Navigator.of(context)
-                      .pushNamed(NewPassWordView.routeName),
+                  onTap: () {
+                    _verifyOtpController.verify();
+                    // return Navigator.of(context)
+                    //   .pushNamed(NewPassWordView.routeName);
+                  },
                 ),
                 const SizedBox(height: 15),
                 const Fancy2Text(

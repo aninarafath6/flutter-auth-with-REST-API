@@ -16,6 +16,15 @@ class LoginController extends GetxController with BaseController {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  @override
+  void dispose() {
+    _nameTextController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+
+    super.dispose();
+  }
+
   final _loading = false.obs;
   // ?? getters
   GlobalKey get formKey => _formKey;
