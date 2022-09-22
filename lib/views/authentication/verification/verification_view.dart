@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:karmalab_assignment/constants/image_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
+import 'package:karmalab_assignment/views/authentication/new_password/new_password.dart';
 import 'package:karmalab_assignment/views/authentication/verification/widgets/otp_feild.dart';
 import 'package:karmalab_assignment/views/authentication/widget/auth_header.dart';
 import 'package:karmalab_assignment/widgets/custom_button.dart';
@@ -34,7 +35,11 @@ class VerificationView extends StatelessWidget {
                 const SizedBox(height: 40),
                 const OtpFelid(),
                 const SizedBox(height: 50),
-                const CustomButton(label: "Verify"),
+                CustomButton(
+                  label: "Verify",
+                  onTap: () => Navigator.of(context)
+                      .pushNamed(NewPassWordView.routeName),
+                ),
                 const SizedBox(height: 15),
                 const Fancy2Text(
                   first: "Didn’t received OTP? ",

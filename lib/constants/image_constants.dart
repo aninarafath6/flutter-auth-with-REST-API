@@ -9,4 +9,5 @@ class AppImages {
   static const forgotImage = "assets/images/png/forgot-illustration.png";
   static const verificationImage =
       "assets/images/png/verification-illustration.png";
+  static const newPass = "assets/images/png/new-pass-illu.png";
 }
