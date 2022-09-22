@@ -7,4 +7,6 @@ class AppImages {
   static const authSelection =
       'assets/images/png/illustration-auth-selection.png';
   static const forgotImage = "assets/images/png/forgot-illustration.png";
+  static const verificationImage =
+      "assets/images/png/verification-illustration.png";
 }

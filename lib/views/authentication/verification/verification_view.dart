@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:karmalab_assignment/constants/image_constants.dart';
+import 'package:karmalab_assignment/constants/size_constants.dart';
+import 'package:karmalab_assignment/views/authentication/verification/widgets/otp_feild.dart';
+import 'package:karmalab_assignment/views/authentication/widget/auth_header.dart';
 
 class VerificationView extends StatelessWidget {
   const VerificationView({Key? key}) : super(key: key);
@@ -8,6 +10,29 @@ class VerificationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 100),
+              Image.asset(
+                AppImages.verificationImage,
+                width: AppSizes.onboardingImageSize,
+              ),
+              const SizedBox(height: 25),
+              const AuthHeader(
+                title: "Verification",
+                subTitle: "An OTP  has been send to your email",
+              ),
+              const SizedBox(height: 40),
+              const OtpFelid(),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

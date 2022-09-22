@@ -16,6 +16,7 @@ dependencies:
   google_fonts: ^3.0.1
   remix: ^0.0.1-dev.1
   remixicon: ^1.0.0
+  pinput: ^2.2.12
 
 dev_dependencies:
   flutter_test:

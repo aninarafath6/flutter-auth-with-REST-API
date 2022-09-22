@@ -3,6 +3,7 @@ import 'package:karmalab_assignment/views/authentication/forgot/forgot_password.
 import 'package:karmalab_assignment/views/authentication/login/login_view.dart';
 import 'package:karmalab_assignment/views/authentication/select_auth/select_auth_view.dart';
 import 'package:karmalab_assignment/views/authentication/siginup/signup_view.dart';
+import 'package:karmalab_assignment/views/authentication/verification/verification_view.dart';
 import 'package:karmalab_assignment/views/onboarding/onboarding_view.dart';
 import 'package:karmalab_assignment/views/splash/splash_view.dart';
 
@@ -21,6 +22,9 @@ class RouteUtil {
         return MaterialPageRoute(builder: (context) => const LoginView());
       case ForgotPassWord.routeName:
         return MaterialPageRoute(builder: (context) => const ForgotPassWord());
+      case VerificationView.routeName:
+        return MaterialPageRoute(
+            builder: (context) => const VerificationView());
       default:
         return MaterialPageRoute(builder: (context) => const Scaffold());
     }
