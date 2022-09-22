@@ -8,10 +8,12 @@ class Fancy2Text extends StatelessWidget {
     this.first,
     this.second,
     this.isCenter = false,
+    this.onTap,
   }) : super(key: key);
   final String? first;
   final String? second;
   final bool? isCenter;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +25,15 @@ class Fancy2Text extends StatelessWidget {
           first ?? "",
           style: GoogleFonts.openSans(),
         ),
-        Text(
-          second ?? "",
-          style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                color: AppColors.darkOrange,
-                fontWeight: FontWeight.w500,
-              ),
+        GestureDetector(
+          onTap: onTap,
+          child: Text(
+            second ?? "",
+            style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                  color: AppColors.darkOrange,
+                  fontWeight: FontWeight.w500,
+                ),
+          ),
         ),
       ],
     );

@@ -6,4 +6,5 @@ class AppImages {
 
   static const authSelection =
       'assets/images/png/illustration-auth-selection.png';
+  static const forgotImage = "assets/images/png/forgot-illustration.png";
 }

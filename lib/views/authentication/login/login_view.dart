@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
+import 'package:karmalab_assignment/views/authentication/forgot/forgot_password.dart';
+import 'package:karmalab_assignment/views/authentication/widget/auth_header.dart';
 import 'package:karmalab_assignment/widgets/custom_button.dart';
 import 'package:karmalab_assignment/widgets/custom_input.dart';
 import 'package:karmalab_assignment/widgets/fancy2_text.dart';
@@ -33,12 +35,17 @@ class _LoginViewState extends State<LoginView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 80),
-                  _header(context),
+                  const AuthHeader(
+                    subTitle: "Sign In To Your Account",
+                    title: "Sign In",
+                  ),
                   const SizedBox(height: 50),
                   _loginForm(),
-                  const Fancy2Text(
+                  Fancy2Text(
                     first: "Forgot password? ",
                     second: "Reset",
+                    onTap: () =>
+                        Navigator.pushNamed(context, ForgotPassWord.routeName),
                   ),
                   const SizedBox(height: 32),
                   const CustomButton(label: "Sign In"),
@@ -77,21 +84,6 @@ class _LoginViewState extends State<LoginView> {
               secure = !secure;
             });
           },
-        ),
-      ],
-    );
-  }
-
-  Column _header(BuildContext context) {
-    return Column(
-      children: [
-        Text("Sign In", style: Theme.of(context).textTheme.titleLarge),
-        const SizedBox(height: 8),
-        Text(
-          "Sign In To Your Account",
-          style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
         ),
       ],
     );

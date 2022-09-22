@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:karmalab_assignment/views/authentication/forgot/forgot_password.dart';
 import 'package:karmalab_assignment/views/authentication/login/login_view.dart';
 import 'package:karmalab_assignment/views/authentication/select_auth/select_auth_view.dart';
 import 'package:karmalab_assignment/views/authentication/siginup/signup_view.dart';
@@ -18,6 +19,8 @@ class RouteUtil {
         return MaterialPageRoute(builder: (context) => const SignUpView());
       case LoginView.routeName:
         return MaterialPageRoute(builder: (context) => const LoginView());
+      case ForgotPassWord.routeName:
+        return MaterialPageRoute(builder: (context) => const ForgotPassWord());
       default:
         return MaterialPageRoute(builder: (context) => const Scaffold());
     }
