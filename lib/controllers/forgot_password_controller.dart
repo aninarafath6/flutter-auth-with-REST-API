@@ -20,6 +20,13 @@ class ForgotPasswordController extends GetxController with BaseController {
   TextEditingController get emailController => _emailController;
   bool get loading => _loading.value;
 
+  @override
+  void dispose() {
+    _nameTextController.dispose();
+    _emailController.dispose();
+    super.dispose();
+  }
+
 // validate login form
   bool validate() {
     bool emailValid = RegExp(

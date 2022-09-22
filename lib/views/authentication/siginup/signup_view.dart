@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
 import 'package:karmalab_assignment/controllers/sign_up_controller.dart';
+import 'package:karmalab_assignment/helper/dialog_helper.dart';
 import 'package:karmalab_assignment/utils/dimension.dart';
 import 'package:karmalab_assignment/views/authentication/login/login_view.dart';
 import 'package:karmalab_assignment/views/authentication/siginup/widgets/sign_up_form.dart';
@@ -65,6 +66,8 @@ class _SignUpViewState extends State<SignUpView> {
                                   HomeView.routeName,
                                   (_) => false,
                                 );
+                              } else {
+                                DialogHelper.showSnackBar();
                               }
                             },
                           );

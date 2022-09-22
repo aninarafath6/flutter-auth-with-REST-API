@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:karmalab_assignment/constants/image_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
 import 'package:karmalab_assignment/controllers/forgot_password_controller.dart';
+import 'package:karmalab_assignment/helper/dialog_helper.dart';
 import 'package:karmalab_assignment/utils/dimension.dart';
 import 'package:karmalab_assignment/views/authentication/verification/verification_view.dart';
 // import 'package:karmalab_assignment/views/authentication/verification/verification_view.dart';
@@ -59,6 +60,8 @@ class ForgotPassWord extends StatelessWidget {
                           email: _forgotPasswordController.emailController.text,
                         ),
                       );
+                    } else {
+                      DialogHelper.showSnackBar();
                     }
                   }),
                 );

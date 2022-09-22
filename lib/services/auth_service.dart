@@ -82,8 +82,8 @@ class AuthService extends BaseController {
 
   // !! send otp
   Future<bool> verifyOtp(dynamic object) async {
-    debugPrint(object);
-    debugPrint(await _prefService.getToken());
+    // debugPrint(object.toString());
+    // debugPrint(await _prefService.getToken());
     var token = await _prefService.getToken();
     var result = await _baseClient.post(
       NetworkConstants.verifyOtp,
@@ -96,7 +96,40 @@ class AuthService extends BaseController {
 
     if (result != null) {
       result = json.decode(result);
+      print(result.toString());
+      print("======");
+      print(result["token"]);
+
+      _prefService.updateToken(result["token"]);
       debugPrint("verify otp");
+
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // !! send otp
+  Future<bool> resetPassword(dynamic object) async {
+    debugPrint("new token");
+    debugPrint(object.toString());
+
+    debugPrint(await _prefService.getToken());
+    var token = await _prefService.getToken();
+    var result = await _baseClient.post(
+      NetworkConstants.resetPassApi,
+      object,
+      header: {
+        'Content-Type': "application/json",
+        'Authorization': "Token $token"
+      },
+    ).catchError(handleError);
+    debugPrint(result.toString());
+
+    if (result != null) {
+      result = json.decode(result);
+      debugPrint("reset password");
+      debugPrint(result.toString());
 
       return true;
     } else {

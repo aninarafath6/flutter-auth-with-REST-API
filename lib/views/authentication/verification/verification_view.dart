@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:karmalab_assignment/constants/image_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
 import 'package:karmalab_assignment/controllers/verify_otp_controller.dart';
+import 'package:karmalab_assignment/helper/dialog_helper.dart';
 import 'package:karmalab_assignment/utils/dimension.dart';
 import 'package:karmalab_assignment/views/authentication/new_password/new_password.dart';
 import 'package:karmalab_assignment/views/authentication/verification/widgets/otp_feild.dart';
@@ -50,7 +51,9 @@ class VerificationView extends StatelessWidget {
                     onTap: () {
                       _verifyOtpController.verify(email, (status) {
                         if (status) {
-                          Get.toNamed(NewPassWordView.routeName);
+                          Get.to(NewPassWordView(email: email));
+                        } else {
+                          DialogHelper.showSnackBar();
                         }
                       });
                       // return Navigator.of(context)

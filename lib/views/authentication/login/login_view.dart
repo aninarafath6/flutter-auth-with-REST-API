@@ -4,6 +4,7 @@ import 'package:get/state_manager.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
 import 'package:karmalab_assignment/controllers/login_controller.dart';
+import 'package:karmalab_assignment/helper/dialog_helper.dart';
 import 'package:karmalab_assignment/utils/dimension.dart';
 import 'package:karmalab_assignment/views/authentication/forgot/forgot_password.dart';
 import 'package:karmalab_assignment/views/authentication/siginup/signup_view.dart';
@@ -65,6 +66,8 @@ class _LoginViewState extends State<LoginView> {
                             HomeView.routeName,
                             (_) => false,
                           );
+                        } else {
+                          DialogHelper.showSnackBar();
                         }
                       }),
                     );

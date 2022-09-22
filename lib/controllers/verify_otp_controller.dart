@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:karmalab_assignment/controllers/base_controller.dart';
-import 'package:karmalab_assignment/controllers/forgot_password_controller.dart';
 import 'package:karmalab_assignment/services/base/app_exceptions.dart';
 
 import '../services/auth_service.dart';
