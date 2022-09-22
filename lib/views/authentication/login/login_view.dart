@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:karmalab_assignment/constants/color_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
+import 'package:karmalab_assignment/utils/dimension.dart';
 import 'package:karmalab_assignment/views/authentication/forgot/forgot_password.dart';
 import 'package:karmalab_assignment/views/authentication/siginup/signup_view.dart';
 import 'package:karmalab_assignment/views/authentication/widget/auth_header.dart';
@@ -35,7 +36,7 @@ class _LoginViewState extends State<LoginView> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 80),
+                  context.spacing(height: 5),
                   const AuthHeader(
                     subTitle: "Sign In To Your Account",
                     title: "Sign In",
