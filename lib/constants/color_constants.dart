@@ -12,4 +12,5 @@ class AppColors {
   static const Color texty = Color(0xff455A64);
   static const Color orange = Color(0xffFFA671);
   static const Color darkOrange = Color(0xffFE7524);
+  static const Color smallText = Color(0xff6C6C6C);
 }

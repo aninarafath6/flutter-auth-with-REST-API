@@ -5,7 +5,7 @@ import 'package:karmalab_assignment/constants/color_constants.dart';
 class CustomButton extends StatelessWidget {
   const CustomButton({
     Key? key,
-    this.label,
+    this.label = "label",
     this.isFilled = true,
     this.onTap,
   }) : super(key: key);

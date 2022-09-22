@@ -14,6 +14,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.5
   google_fonts: ^3.0.1
+  remix: ^0.0.1-dev.1
+  remixicon: ^1.0.0
 
 dev_dependencies:
   flutter_test:
