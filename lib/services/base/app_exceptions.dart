@@ -11,8 +11,8 @@ class BadRequestException extends AppExceptions {
       : super(message, "Bad Request", url);
 }
 
-class ApiNotResponding extends AppExceptions {
-  ApiNotResponding(String? message, String? url)
+class ApiNotRespondingException extends AppExceptions {
+  ApiNotRespondingException(String? message, String? url)
       : super(message, "Api not responding", url);
 }
 

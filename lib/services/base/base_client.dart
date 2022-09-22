@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/rendering.dart';
 // ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -16,32 +15,22 @@ class BaseClient {
   // post method
   Future<dynamic> post(String api, dynamic object, {dynamic header}) async {
     var payload = jsonEncode(object);
-    var url = Uri.parse(NetworkConstants.baseURL + api);
+    var uri = Uri.parse(NetworkConstants.baseURL + api);
 
     try {
-      var response = await client.post(url, body: payload, headers: header);
-      var result = utf8.decode(response.bodyBytes);
-
-      debugPrint(result);
-      // if (response.statusCode == 201 || response.statusCode == 200) {
-      //   return result;
-      // } else {
-      //   // throw exception
-      //   return {
-      //     "status": false,
-      //     "message": "something went wrong",
-      //   };
-      // }
+      var response = await client.post(uri, body: payload, headers: header);
+      _processResponse(response);
     } on SocketException {
-      // throw Exception();
+      throw FetchDataException("No Internet connection", uri.toString());
     } catch (e) {
-      debugPrint("something went wrong");
+      throw FetchDataException(e.toString(), uri.toString());
     }
   }
 
   // put method
   Future<dynamic> put(String api) async {}
 
+// process response method
   dynamic _processResponse(http.Response response) {
     var bodyBytes = utf8.decode(response.bodyBytes);
     switch (response.statusCode) {
