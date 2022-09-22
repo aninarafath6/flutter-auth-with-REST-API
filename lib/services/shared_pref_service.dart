@@ -19,4 +19,25 @@ class SharedPrefService {
     var status = pref.getBool("login");
     return status! ? HomeView.routeName : OnboardingView.routeName;
   }
+
+  Future<Map<String, dynamic>> getUser() async {
+    SharedPreferences pref = await _prefs;
+
+    // ? simulate delay
+    await Future.delayed(const Duration(seconds: 0));
+    var user = Future.value({
+      "user": pref.getInt("id"),
+      "email": pref.getString("email"),
+    });
+
+    return user;
+  }
+
+  void clear() async {
+    SharedPreferences pref = await _prefs;
+    pref.remove("login");
+    pref.remove("email");
+    pref.remove("id");
+    pref.remove("otp");
+  }
 }
