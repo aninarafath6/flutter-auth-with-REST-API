@@ -44,6 +44,11 @@ class SharedPrefService {
     pref.setString("token", token ?? "");
   }
 
+  Future<String?> getToken() async {
+    SharedPreferences pref = await _prefs;
+    return pref.getString("token");
+  }
+
   void clear() async {
     SharedPreferences pref = await _prefs;
     pref.setBool("login", false);

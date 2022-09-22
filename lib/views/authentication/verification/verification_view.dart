@@ -4,18 +4,20 @@ import 'package:karmalab_assignment/constants/image_constants.dart';
 import 'package:karmalab_assignment/constants/size_constants.dart';
 import 'package:karmalab_assignment/controllers/verify_otp_controller.dart';
 import 'package:karmalab_assignment/utils/dimension.dart';
-// import 'package:karmalab_assignment/views/authentication/new_password/new_password.dart';
+import 'package:karmalab_assignment/views/authentication/new_password/new_password.dart';
 import 'package:karmalab_assignment/views/authentication/verification/widgets/otp_feild.dart';
 import 'package:karmalab_assignment/views/authentication/widget/auth_header.dart';
 import 'package:karmalab_assignment/widgets/custom_button.dart';
 import 'package:karmalab_assignment/widgets/fancy2_text.dart';
 
 class VerificationView extends StatelessWidget {
-  const VerificationView({Key? key}) : super(key: key);
+  const VerificationView({Key? key, this.email}) : super(key: key);
   static const routeName = "/verification-otp";
 
   static final VerifyOtpController _verifyOtpController =
       Get.put(VerifyOtpController());
+
+  final String? email;
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +43,21 @@ class VerificationView extends StatelessWidget {
                 const SizedBox(height: 40),
                 const OtpFelid(),
                 const SizedBox(height: 50),
-                CustomButton(
-                  label: "Verify",
-                  onTap: () {
-                    _verifyOtpController.verify();
-                    // return Navigator.of(context)
-                    //   .pushNamed(NewPassWordView.routeName);
-                  },
-                ),
+                Obx(() {
+                  return CustomButton(
+                    label: "Verify",
+                    isLoading: _verifyOtpController.loading,
+                    onTap: () {
+                      _verifyOtpController.verify(email, (status) {
+                        if (status) {
+                          Get.toNamed(NewPassWordView.routeName);
+                        }
+                      });
+                      // return Navigator.of(context)
+                      //   .pushNamed(NewPassWordView.routeName);
+                    },
+                  );
+                }),
                 const SizedBox(height: 15),
                 const Fancy2Text(
                   first: "Didn’t received OTP? ",

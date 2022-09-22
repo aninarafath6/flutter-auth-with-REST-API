@@ -80,12 +80,27 @@ class AuthService extends BaseController {
     }
   }
 
-  // Future<bool> logout() async {
-  //   var result = await _baseClient.post(
-  //     NetworkConstants.registerAPI,
-  //     {},
-  //     header: {'Content-Type': "application/json"},
-  //   ).catchError(handleError);
+  // !! send otp
+  Future<bool> verifyOtp(dynamic object) async {
+    debugPrint(object);
+    debugPrint(await _prefService.getToken());
+    var token = await _prefService.getToken();
+    var result = await _baseClient.post(
+      NetworkConstants.verifyOtp,
+      object,
+      header: {
+        'Content-Type': "application/json",
+        'Authorization': "Token $token"
+      },
+    ).catchError(handleError);
 
-  // }
+    if (result != null) {
+      result = json.decode(result);
+      debugPrint("verify otp");
+
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

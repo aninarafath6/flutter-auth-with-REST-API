@@ -1,11 +1,19 @@
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:karmalab_assignment/controllers/base_controller.dart';
+import 'package:karmalab_assignment/controllers/forgot_password_controller.dart';
 import 'package:karmalab_assignment/services/base/app_exceptions.dart';
 
+import '../services/auth_service.dart';
+
 class VerifyOtpController extends GetxController with BaseController {
+  final AuthService _authService = AuthService();
+
   String? otp = "";
+  final _loading = false.obs;
 
   // set otp(otp) => _otp = otp;
+  bool get loading => _loading.value;
 
   void onChange(val) {
     otp = val;
@@ -26,7 +34,23 @@ class VerifyOtpController extends GetxController with BaseController {
     }
   }
 
-  void verify() {
-    bool status = validate();
+  void verify(String? email, Function(bool)? success) async {
+    bool valid = validate();
+
+    if (valid) {
+      _loading.value = true;
+      await Future.delayed(const Duration(seconds: 2));
+
+      // ? login method
+      bool status = await _authService.verifyOtp(
+        {
+          "email": email.toString(),
+          "otp": otp.toString(),
+        },
+      );
+      _loading.value = false;
+      await Future.delayed(const Duration(milliseconds: 300));
+      success!(status);
+    }
   }
 }

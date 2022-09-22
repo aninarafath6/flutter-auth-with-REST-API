@@ -54,8 +54,10 @@ class ForgotPassWord extends StatelessWidget {
                   isLoading: _forgotPasswordController.loading,
                   onTap: () => _forgotPasswordController.sendOtp((bool status) {
                     if (status) {
-                      Get.toNamed(
-                        VerificationView.routeName,
+                      Get.to(
+                        VerificationView(
+                          email: _forgotPasswordController.emailController.text,
+                        ),
                       );
                     }
                   }),
