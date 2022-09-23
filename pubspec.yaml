@@ -19,18 +19,28 @@ dependencies:
   pinput: ^2.2.12
   http: ^0.13.5
   shared_preferences: ^2.0.15
+  flutter_launcher_icons: "^0.10.0"
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/logos/ic_launcher-2/1024.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+ 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+ 
 
 flutter:
   uses-material-design: true
   assets:
     - assets/images/logos/
-    -  assets/images/png/onboarding-images/
-    -  assets/images/png/
+    - assets/images/png/onboarding-images/
+    - assets/images/png/
+    - assets/images/logos/ic_launcher-2/
 
 
   
