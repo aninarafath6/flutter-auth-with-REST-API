@@ -84,6 +84,10 @@ class LoginController extends GetxController with BaseController {
   // ignore: logout method
   void logout() {
     _sharedPrefService.clear();
-    Get.toNamed(SelectAuthView.routeName);
+    Get.offNamedUntil(
+      SelectAuthView.routeName,
+      (_) => false,
+    );
+    // Get.offAndToNamed(SelectAuthView.routeName);
   }
 }
