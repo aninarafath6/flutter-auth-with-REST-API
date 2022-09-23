@@ -8,3 +8,71 @@ Mechine test
 
 
 
+# Karma Lab -> Machine test
+
+_Description here_
+
+### Libraries used
+🌲
+1. [Flutter](https://flutter.dev/)
+2. [dart](https://dart.dev/) basic language
+3. [Getx](https://pub.dev/packages/get/) for state management
+4. [Http](https://pub.dev/packages/http) for making http request
+6. [remixicon](https://pub.dev/packages/flutter_remix) icon pack
+6. [Google Fonts](https://pub.dev/packages/google_fonts) for typography
+6. [shared_preferences](https://pub.dev/packages/shared_preferences) for Local db management
+
+
+
+
+
+### Preferred tools
+
+1. Code editor [VS Code](https://code.visualstudio.com/)
+
+### Folder structure
+
+followed mvvm architecture
+
+#### `utils`
+
+It will have all the basic utilities dimension,rotes etc...
+
+#### `constants`
+
+It will have all the constants and common things like network_constants , image_constants , color_constants ... etc
+
+#### `helpers`
+
+It will have all the basic helpres of app like dailog-helper ...etc.
+
+#### `controllers`
+
+It will have all the basic controllers of app like login-controller,signup-controller ...etc.
+
+#### `models`
+
+It will have all the basic models of class  user-model,onboarding-model ...etc.
+
+#### `services`
+
+It will have all the basic services of the app class  db-service, auth-service  ...etc.
+
+#### `widgets`
+
+It will have all the basic common widgets  custom-button, custom-input  ...etc.
+
+#### `assets`
+
+It will contains all the assets is used in this project.
+
+### Commands
+
+```
+# start dev
+flutter run
+
+# test app
+flutter test [<DIRECTORY|DART_FILE>]
+
+```
