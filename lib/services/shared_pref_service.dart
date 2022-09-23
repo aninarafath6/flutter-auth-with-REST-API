@@ -17,9 +17,12 @@ class SharedPrefService {
   Future<String> start() async {
     SharedPreferences pref = await _prefs;
 
-    var status = pref.getBool("login");
+    var status = pref.getString("email");
+    if (status == null) {
+      pref.setBool("login", false);
+    }
 
-    return status! ? HomeView.routeName : OnboardingView.routeName;
+    return status != null ? HomeView.routeName : OnboardingView.routeName;
   }
 
   Future<Map<String, dynamic>> getUser() async {
