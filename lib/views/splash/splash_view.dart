@@ -43,7 +43,7 @@ class _SplashViewState extends State<SplashView>
           await Future.delayed(const Duration(seconds: 1));
           String routeName = await _sharedPrefService.start();
           // ignore: use_build_context_synchronously
-          Navigator.pushReplacementNamed(context, routeName);
+          Navigator.pushNamedAndRemoveUntil(context, routeName, (_) => false);
         }
         setState(() {});
       });

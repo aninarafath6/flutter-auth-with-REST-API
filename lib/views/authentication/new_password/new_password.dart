@@ -70,7 +70,7 @@ class _NewPassWordViewState extends State<NewPassWordView> {
                     if (status) {
                       Get.toNamed(LoginView.routeName);
                       DialogHelper.showSnackBar(
-                          title: "done😎",
+                          title: "Done 😎",
                           description: "password successfully changed");
                     } else {
                       DialogHelper.showSnackBar();
