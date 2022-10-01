@@ -1,4 +1,4 @@
-# karmalab_assignment Mechine test
+# APP Authentication with REST-API  
 
 ### App Screenshots
 
@@ -7,8 +7,6 @@
 
 
 
-
-# Karma Lab -> Machine test
 
 _Description here_
 
